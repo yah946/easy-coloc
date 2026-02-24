@@ -36,26 +36,7 @@
         <span>&#x2b;</span>
     </div>
     {{-- Modal --}}
-    <div id="modal" class="text-white hidden flex fixed inset-0 items-center justify-center z-50">
-        <div id="overlay" class="fixed inset-0 bg-white opacity-20"></div>
-        <div class="bg-black space-y-4 p-4 rounded-lg shadow-lg z-10 relative max-w-sm w-full mx-4">
-            {{-- header --}}
-            <div class="flex justify-between items-center">
-                <h2>Create New Colocation</h2>
-                <span id="xmark" class="cursor-pointer">&#10006;</span>
-            </div>
-            {{-- body --}}
-            <div>
-                <form>
-                    <input type="text" id="date_range" wire:model="date_range" placeholder="Select date range">
-                    <div class="flex justify-between">
-                        <button id="cancel">Cancel</button>
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @livewire('modal')
 </body>
 
 </html>
