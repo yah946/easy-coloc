@@ -13,8 +13,8 @@ class LoginController extends Controller
     }
     public function login(LoginRequest $request) {
         if(Auth::attempt($request->only('email','password'))){
-            return redirect()->intended('/profile')->with('success','you are in');
+            return redirect()->intended('/profile')->with('success','Welcome back!');
         }
-        return redirect()->route('auth.profile')->with('error','Invalid Credientials');
+        return back()->with('error','Invalid Credientials');
     }
 }

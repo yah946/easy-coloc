@@ -31,6 +31,6 @@ class RegisterController extends Controller
                 ->assignRole('admin');
             }
         });
-        return redirect()->route('auth.profile')->with('success','Your account has been successfully created.');
+        return redirect()->intended('/profile')->with('success','Your account has been successfully created!');
     }
 }

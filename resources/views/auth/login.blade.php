@@ -10,7 +10,7 @@
 <body class="bg-gray-900 text-gray-300">
     @if (session('error'))
         <div class="p-2">
-            <div class="p-4 mb-4 text-sm rounded bg-green-200 text-gray-900" role="alert">
+            <div class="p-4 mb-4 text-sm rounded bg-red-300 text-gray-900" role="alert">
                 <span class="font-bold">Success:</span> {{ session('error') }}
             </div>
         </div>
@@ -32,9 +32,9 @@
                 <span class="text-sm text-red-500">{{ $message }}</span>
                 @enderror
             </div>
-            {{-- <div class="flex gap-2 items-center">
-                <p>forgot password?</p><a class="text-small text-gray-400 underline active:text-blue-700" href="{{route('auth.login')}}">reset now</a>
-            </div> --}}
+            <div class="flex gap-2 items-center">
+                <p>Don't have an account?</p><a class="text-small text-gray-400 underline active:text-blue-200" href="{{route('register')}}">Sign Up</a>
+            </div>
             <div class="mt-4">
                 <input type="submit" value="Login" class="w-full py-1 px-2 bg-linear-to-r from-orange-600 via-orange-500 to-orange-400 text-white cursor-pointer">
             </div>

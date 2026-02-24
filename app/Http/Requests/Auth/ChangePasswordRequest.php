@@ -22,7 +22,7 @@ class ChangePasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'current_password'=>'string|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$#]).{8,}$/',
+            'current_password'=>'string|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$#!?^*]).{8,}$/',
             'password'=>'confirmed|string|regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$#]).{8,}$/',
         ];
     }

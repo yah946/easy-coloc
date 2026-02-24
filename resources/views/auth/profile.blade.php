@@ -26,7 +26,7 @@
         <div class="border p-2 space-y-2">
             <h2 class="m-0">{{ auth()->user()->name}}</h2>
             <p>{{ auth()->user()->email}}</p>
-            <a class="bg-red-600 rounded w-fit py-1 px-2 cursor-pointer" href="{{route('auth.logout')}}">Logout</a>
+            <a class="bg-red-600 rounded w-fit py-1 px-2 cursor-pointer" href="{{route('logout')}}">Logout</a>
         </div>
     </main>
     <nav class="flex flex-col">

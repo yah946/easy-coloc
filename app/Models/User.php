@@ -27,6 +27,10 @@ class User extends Authenticatable
         'is_active',
     ];
 
+    public function colocation(){
+        return $this->belongsToMany(Colocation::class,'user_colocation','user_id','colocation_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
