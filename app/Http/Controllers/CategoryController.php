@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Colocation;
 use Illuminate\Http\Request;
 
-class ColocationController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() {
-        return view('colocation.colocation');
+    public function index()
+    {
+        //
     }
 
     /**
@@ -34,16 +34,15 @@ class ColocationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Colocation $colocation)
+    public function show(Category $category)
     {
-        $categories = Category::all();
-        return view('colocation.show',compact('colocation','categories'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Colocation $colocation)
+    public function edit(Category $category)
     {
         //
     }
@@ -51,7 +50,7 @@ class ColocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Colocation $colocation)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -59,7 +58,7 @@ class ColocationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Colocation $colocation)
+    public function destroy(Category $category)
     {
         //
     }

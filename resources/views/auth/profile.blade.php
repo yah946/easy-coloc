@@ -119,7 +119,7 @@
         </form>
     </section>
     <div id="arrow" class="hidden flex justify-end text-center cursor-pointer text-black">
-        <span class="bg-red-500 w-8 rounded-full text-2xl">&#8613;</span>
+        <span class="bg-red-500 w-8 rounded-full text-2xl">&#8593;</span>
     </div>
 </body>
 </html>

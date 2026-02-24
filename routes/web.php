@@ -23,4 +23,5 @@ Route::middleware(['auth'])->group(function(){
     Route::get('logout', LogoutController::class)->name('logout');
 
     Route::get('colocations', [ColocationController::class,'index'])->name('auth.profile');
+    Route::get('colocations', [ColocationController::class,'show'])->name('auth.profile');
 });

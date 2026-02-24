@@ -25,11 +25,6 @@
                 </div>
             </div>
         @endif
-        <div class="border p-2 space-y-2">
-            <h2 class="m-0">{{ auth()->user()->name }}</h2>
-            <p>{{ auth()->user()->email }}</p>
-            <a class="bg-red-600 rounded w-fit py-1 px-2 cursor-pointer" href="{{ route('logout') }}">Logout</a>
-        </div>
     </main>
     <div id="show-modal"
         class="w-6 h-6 bg-red-600 rounded flex justify-center cursor-pointer hover:scale-120 duration-150 active:text-black fixed bottom-3 right-3">
@@ -37,6 +32,7 @@
     </div>
     {{-- Modal --}}
     @livewire('modal')
+    @livewire('display-colocation')
 </body>
 
 </html>
