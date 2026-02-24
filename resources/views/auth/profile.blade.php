@@ -26,7 +26,7 @@
         <div class="border p-2 space-y-2">
             <h2 class="m-0">{{ auth()->user()->name}}</h2>
             <p>{{ auth()->user()->email}}</p>
-            <a class="bg-red-600 rounded w-fit py-1 px-2 cursor-pointer" href="route('auth.logout')">Logout</a>
+            <a class="bg-red-600 rounded w-fit py-1 px-2 cursor-pointer" href="{{route('auth.logout')}}">Logout</a>
         </div>
     </main>
     <nav class="flex flex-col">
@@ -72,12 +72,10 @@
                            d="M7 6.2V5h12v1.2M7 19h6m.2-14-1.677 6.523M9.6 19l1.029-4M5 5l6.523 6.523M19 19l-7.477-7.477" />
                    </svg>
                 </button>
-                
-                
             </div>
             <div>
                 @error('current_password')
-                <span class="text-sm text-red-500">$message </span>
+                <span class="text-sm text-red-500">{{$message}}</span>
                 @enderror
             </div>
             <div class="max-w-md relative">
@@ -120,5 +118,8 @@
             </div>
         </form>
     </section>
+    <div id="arrow" class="hidden flex justify-end text-center cursor-pointer text-black">
+        <span class="bg-red-500 w-8 rounded-full text-2xl">&#8613;</span>
+    </div>
 </body>
 </html>
