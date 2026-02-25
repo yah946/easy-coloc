@@ -15,10 +15,10 @@ class Modal extends Component
     }
     public function create(){
         $this->validate([
-            'name'=>'string|min:3|max:255',
+            'name'=>'required|string|min:3|max:255',
         ]);
         Colocation::create(['name'=>$this->name]);
         $this->dispatch('colocationCreated');
-        $this->reset(); 
+        $this->reset();
     }
 }
