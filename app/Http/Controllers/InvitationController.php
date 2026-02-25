@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invitation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class InvitationController extends Controller
 {
@@ -28,7 +29,8 @@ class InvitationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $token = Str::random(60);
+        return $token;
     }
 
     /**
