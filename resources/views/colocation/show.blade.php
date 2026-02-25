@@ -22,7 +22,7 @@
             @csrf
             <div class="flex flex-col ">
                 <label for="email">Email</label>
-                <input class="border-b outline-hidden px-2 focus:border py-1" id="email" type="text" placeholder="e.g. mohamed14@gmail.com">
+                <input class="border-b outline-hidden px-2 focus:border py-1" id="email" name="email" type="text" placeholder="e.g. mohamed14@gmail.com">
                 @error('email')
                 <span class="text-sm text-red-500">{{ $message }}</span>
                 @enderror
