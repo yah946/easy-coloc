@@ -11,7 +11,7 @@
     @if (session('error'))
         <div class="p-2">
             <div class="p-4 mb-4 text-sm rounded bg-red-300 text-gray-900" role="alert">
-                <span class="font-bold">Success:</span> {{ session('error') }}
+                <span class="font-bold">Error:</span> {{ session('error') }}
             </div>
         </div>
     @endif

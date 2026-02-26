@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $users = User::all();
+        $users = User::paginate(10);
         return view('admin.users',compact('users'));
     }
     public function ban(User $user){
@@ -17,7 +17,7 @@ class UserController extends Controller
         return back()->with('success',$user->name.' is banned');
     }
     public function OnlyBannedUsers(User $user){
-        $users = User::onlyTrashed()->get();
+        $users = User::onlyTrashed()->paginate(10);
         return view('admin.blocked-list',compact('users'));
     }
     public function deban(User $user){

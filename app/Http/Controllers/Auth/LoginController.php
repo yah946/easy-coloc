@@ -12,6 +12,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
     public function login(LoginRequest $request) {
+
         if(Auth::attempt($request->only('email','password'))){
             return redirect()->intended('/profile')->with('success','Welcome back!');
         }
