@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SentInvitationRequest;
+use App\Mail\InvitationMail;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class InvitationController extends Controller
@@ -31,6 +33,7 @@ class InvitationController extends Controller
     public function store(SentInvitationRequest $request)
     {
         $token = Str::random(60);
+        Mail::to($request->email)->send(new InvitationMail($token));
         return $token;
     }
 

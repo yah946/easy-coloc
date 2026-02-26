@@ -28,4 +28,5 @@ Route::middleware(['auth'])->group(function(){
 
 
     Route::post('invitation', [InvitationController::class,'store'])->name('invitation');
+    Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
 });
