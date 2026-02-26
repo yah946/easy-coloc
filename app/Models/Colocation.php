@@ -10,7 +10,7 @@ class Colocation extends Model
     /** @use HasFactory<\Database\Factories\ColocationFactory> */
     use HasFactory;
     protected $fillable = ['name','status']; 
-    public function user(){
+    public function users(){
         return $this->belongsToMany(User::class,'user_colocation','colocation_id','user_id');       
     }
 }

@@ -11,7 +11,7 @@
                 </div>
                 <div id="arrow" class="text-white flex justify-between text-center">
                     <span>2 member</span>
-                    <a href="route('colocation.show',$colocation)" class="bg-gray-200 text-black w-8 h-8 rounded-full text-2xl">&#8594;</a>
+                    <a href="{{route('coloc.show',$colocation)}}" class="bg-gray-200 text-black w-8 h-8 rounded-full text-2xl">&#8594;</a>
                 </div>
             </div>
     </article>

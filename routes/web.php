@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\ProfileController;
@@ -23,10 +24,14 @@ Route::middleware(['auth'])->group(function(){
     Route::patch('profile', [ProfileController::class,'changePassword'])->name('auth.profile');
     Route::get('logout', LogoutController::class)->name('logout');
 
-    Route::get('colocations', [ColocationController::class,'index'])->name('auth.profile');
-    Route::get('colocation', [ColocationController::class,'show'])->name('auth.profile');
+    Route::get('colocations', [ColocationController::class,'index'])->name('coloc.index');
+    Route::get('colocation', [ColocationController::class,'show'])->name('coloc.show');
 
 
     Route::post('invitation', [InvitationController::class,'store'])->name('invitation');
     Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
+});
+Route::middleware(['admin'])->group(function(){
+    Route::get('users', [UserController::class,'index'])->name('admin.users');
+    // Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
 });
