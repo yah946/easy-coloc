@@ -33,5 +33,6 @@ Route::middleware(['auth'])->group(function(){
 });
 Route::middleware(['admin'])->group(function(){
     Route::get('users', [UserController::class,'index'])->name('admin.users');
+    Route::delete('users/{user}', [UserController::class,'ban'])->name('admin.ban');
     // Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
 });

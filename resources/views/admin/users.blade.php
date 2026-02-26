@@ -27,8 +27,9 @@
         @endif
     </main>
     @foreach ($users as $user)
-    <form action="" method="post">
+    <form action="{{route('admin.ban',$user)}}" method="post">
         @csrf
+        @method('delete')
         <div class="flex justify-between">
             <p>{{ $user->name }}</p>
             <p>{{ $user->reputation }}</p>
