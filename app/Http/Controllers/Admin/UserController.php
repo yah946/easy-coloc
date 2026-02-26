@@ -24,4 +24,8 @@ class UserController extends Controller
         $user->restore();
         return back()->with('success',$user->name.' is banned');
     }
+    public function statistic(User $user){
+        $users = User::withTrashed()->count();
+        return view('admin.statistic',compact('users'));
+    }
 }

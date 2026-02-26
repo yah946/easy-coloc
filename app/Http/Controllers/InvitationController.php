@@ -16,7 +16,8 @@ class InvitationController extends Controller
      */
     public function index()
     {
-        //
+        $invites = Invitation::all();
+        return view('invitation.invites',compact('invites'));
     }
 
     /**

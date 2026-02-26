@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('colocation', [ColocationController::class,'show'])->name('coloc.show');
 
 
+    Route::get('invites', [InvitationController::class,'index'])->name('invites');
     Route::post('invitation', [InvitationController::class,'store'])->name('invitation');
     Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
 });
@@ -36,5 +37,5 @@ Route::middleware(['admin'])->group(function(){
     Route::delete('users/{user}', [UserController::class,'ban'])->name('admin.ban');
     Route::get('blocked', [UserController::class,'OnlyBannedUsers'])->name('admin.blocked');
     Route::post('blocked/{user}', [UserController::class,'deban'])->name('admin.deban')->withTrashed();
-    // Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
+    Route::get('statistic', [UserController::class,'statistic'])->name('admin.statistic');
 });
