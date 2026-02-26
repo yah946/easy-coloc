@@ -9,7 +9,7 @@
     <title>Users</title>
 </head>
 
-<body class="bg-gray-900 text-gray-300 p-2 flex flex-col space-y-2">
+<body class="bg-gray-900 text-gray-300 p-2 flex flex-col space-y-2 md:ml-16 mb-10">
     <h1 class="text-2xl font-bold mt-2">All Users</h1>
     <main>
         @if (session('success'))
@@ -59,6 +59,7 @@
         </tbody>
     </table>
     {{ $users->links() }}
+    <x-tab-bar></x-tab-bar>
 </body>
 
 </html>

@@ -15,9 +15,9 @@
             </div>
         </div>
     @endif
-    <form method="post">
+    <form class="md:mt-42" method="post">
         @csrf
-        <div class="gap-2 flex flex-col mx-auto p-2">
+        <div class="gap-2 flex flex-col mx-auto p-2 max-w-md">
             <div class="flex flex-col">
                 <label for="email">Email</label>
                 <input value="{{old('email')}}" id="email" type="email" name="email" required class="bg-gray-700 px-2 py-1 outline-hidden focus:border-none focus:ring-1 focus:ring-yellow-200" placeholder="mohamed@gmail.com">

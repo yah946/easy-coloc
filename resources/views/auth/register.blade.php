@@ -8,9 +8,9 @@
     <title>Register</title>
 </head>
 <body class="bg-gray-900 text-gray-300">
-    <form method="post">
+    <form method="post" class="md:mt-40">
         @csrf
-        <div class="gap-2 flex flex-col mx-auto p-2">
+        <div class="gap-2 flex flex-col mx-auto p-2 max-w-md">
             <div class="flex flex-col">
                 <label for="name">Full Name</label>
                 <input value="{{old('name')}}" id="name" type="text" name="name" required class="bg-gray-700 px-2 py-1 outline-hidden focus:border-none focus:ring-1 focus:ring-yellow-200" placeholder="Mohamed Mostapha">
