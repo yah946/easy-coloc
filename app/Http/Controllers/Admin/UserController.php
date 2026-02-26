@@ -16,4 +16,12 @@ class UserController extends Controller
         $user->delete();
         return back()->with('success',$user->name.' is banned');
     }
+    public function OnlyBannedUsers(User $user){
+        $users = User::onlyTrashed()->get();
+        return view('admin.blocked-list',compact('users'));
+    }
+    public function deban(User $user){
+        $user->restore();
+        return back()->with('success',$user->name.' is banned');
+    }
 }

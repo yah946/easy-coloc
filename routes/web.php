@@ -34,5 +34,7 @@ Route::middleware(['auth'])->group(function(){
 Route::middleware(['admin'])->group(function(){
     Route::get('users', [UserController::class,'index'])->name('admin.users');
     Route::delete('users/{user}', [UserController::class,'ban'])->name('admin.ban');
+    Route::get('blocked', [UserController::class,'OnlyBannedUsers'])->name('admin.blocked');
+    Route::post('blocked/{user}', [UserController::class,'deban'])->name('admin.deban')->withTrashed();
     // Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
 });
