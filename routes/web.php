@@ -28,10 +28,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('colocations', [ColocationController::class,'index'])->name('coloc.index');
     Route::get('colocation/{colocation}', [ColocationController::class,'show'])->name('coloc.show');
 
-
-    Route::get('invites', [InvitationController::class,'index'])->name('invites');
     Route::post('invitation', [InvitationController::class,'store'])->name('invitation');
-    Route::get('invitation/{token}', [InvitationController::class,'store'])->name('invitation');
+    Route::get('invitation/{token}', [InvitationController::class,'index'])->name('invitation');
 });
 Route::middleware(['admin'])->group(function(){
     Route::get('users', [UserController::class,'index'])->name('admin.users');

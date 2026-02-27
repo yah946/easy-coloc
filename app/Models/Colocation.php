@@ -13,6 +13,9 @@ class Colocation extends Model
     public function categories(){
         return $this->hasMany(Category::class);
     }
+    public function invitations(){
+        return $this->hasMany(Invitation::class);
+    }
     public function users(){
         return $this->belongsToMany(User::class,'user_colocation','colocation_id','user_id')->withPivot('role', 'left_at')->withTimestamps();       
     }

@@ -9,4 +9,7 @@ class Invitation extends Model
 {
     /** @use HasFactory<\Database\Factories\InvitationFactory> */
     use HasFactory;
+    public function colocation(){
+        return $this->belongsTo(Colocation::class);
+    }
 }
