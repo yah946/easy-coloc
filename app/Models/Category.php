@@ -12,5 +12,8 @@ class Category extends Model
     public function colocation(){
         return $this->belongsTo(User::class,'user_colocation','colocation_id','user_id')->withPivot('role', 'left_at')->withTimestamps();       
     }
+    public function expenses(){
+        return $this->hasMany(Expense::class);
+    }
     protected $fillable = ['name','colocation_id','description'];
 }

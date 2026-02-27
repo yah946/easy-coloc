@@ -9,4 +9,15 @@ class Expense extends Model
 {
     /** @use HasFactory<\Database\Factories\ExpenseFactory> */
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'amount',
+        'category_id',
+        'user_id',
+        'colocation_id',
+    ];
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
