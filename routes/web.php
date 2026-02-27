@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ColocationController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,6 +28,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('colocations', [ColocationController::class,'index'])->name('coloc.index');
     Route::get('colocation/{colocation}', [ColocationController::class,'show'])->name('coloc.show');
+    
+    Route::get('wallet', [PaymentController::class,'index'])->name('coloc.wallet');
 
     Route::post('invitation', [InvitationController::class,'store'])->name('invitation');
     Route::get('invitation/{token}', [InvitationController::class,'index'])->name('invitation');
