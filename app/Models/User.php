@@ -30,6 +30,18 @@ class User extends Authenticatable
     public function colocations(){
         return $this->belongsToMany(Colocation::class,'user_colocation','user_id','colocation_id')->withPivot('role','left_at')->withTimestamps();
     }
+    public function paidExpenses()
+    {
+        return $this->hasMany(Expense::class, 'payer_id');
+    }
+    public function paymentsSent()
+    {
+        return $this->hasMany(Payment::class, 'from_user_id');
+    }
+    public function paymentsReceived()
+    {
+        return $this->hasMany(Payment::class, 'to_user_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

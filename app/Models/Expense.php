@@ -16,8 +16,16 @@ class Expense extends Model
         'user_id',
         'colocation_id',
     ];
+    public function colocation()
+    {
+        return $this->belongsTo(Colocation::class);
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function payer()
+    {
+        return $this->belongsTo(User::class, 'payer_id');
     }
 }
