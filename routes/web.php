@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('logout', LogoutController::class)->name('logout');
 
     Route::get('colocations', [ColocationController::class,'index'])->name('coloc.index');
-    Route::get('colocation', [ColocationController::class,'show'])->name('coloc.show');
+    Route::get('colocation/{colocation}', [ColocationController::class,'show'])->name('coloc.show');
 
 
     Route::get('invites', [InvitationController::class,'index'])->name('invites');

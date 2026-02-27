@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Colocation::class);
             $table->enum('role',['owner','member']);
-            $table->timestamp('left_at');
+            $table->timestamp('left_at')->nullable();
             $table->timestamps();
         });
     }

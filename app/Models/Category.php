@@ -9,5 +9,8 @@ class Category extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
+    public function colocation(){
+        return $this->belongsTo(User::class,'user_colocation','colocation_id','user_id')->withPivot('role', 'left_at')->withTimestamps();       
+    }
     protected $fillable = ['name','colocation_id','description'];
 }

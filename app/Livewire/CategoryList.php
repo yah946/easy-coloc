@@ -12,6 +12,7 @@ class CategoryList extends Component
     public $names = [];
     protected $listeners = ['categoryCreated'=>'$refresh'];
     public function mount(){
+        $colocation = auth()->user()->colocations();
         foreach(Category::all() as $category){
             $this->names[$category->id] = $category->name; 
         }

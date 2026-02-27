@@ -35,7 +35,7 @@ class InvitationController extends Controller
     {
         $token = Str::random(60);
         Mail::to($request->email)->send(new InvitationMail($token));
-        return $token;
+        return back()->with('success','invatation sent. code: '.$token);
     }
 
     /**

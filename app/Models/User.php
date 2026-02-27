@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     public function colocations(){
-        return $this->belongsToMany(Colocation::class,'user_colocation','user_id','colocation_id');
+        return $this->belongsToMany(Colocation::class,'user_colocation','user_id','colocation_id')->withPivot('role','left_at')->withTimestamps();
     }
 
     /**

@@ -10,7 +10,7 @@ class DisplayColocation extends Component
     protected $listeners = ['colocationCreated'=>'$refresh'];
     public function render()
     {
-        $colocations = Colocation::all();
+        $colocations = auth()->user()->colocations;
         return view('livewire.display-colocation',compact('colocations'));
     }
 }

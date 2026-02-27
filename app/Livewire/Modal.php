@@ -17,7 +17,13 @@ class Modal extends Component
         $this->validate([
             'name'=>'required|string|min:3|max:255',
         ]);
-        Colocation::create(['name'=>$this->name]);
+        $colocation = Colocation::create([
+            'name'=>$this->name,
+            'left_at'=>now(),
+        ]);
+        $colocation->users()->syncWithoutDetaching([auth()->id()=>[
+            'role'=>'owner'
+        ]]);
         $this->dispatch('colocationCreated');
         $this->reset();
     }
