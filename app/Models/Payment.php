@@ -9,6 +9,11 @@ class Payment extends Model
 {
     /** @use HasFactory<\Database\Factories\PaymentFactory> */
     use HasFactory;
+    protected $fillable = [
+        'from_user_id',
+        'to_user_id',
+        'amount',
+    ];
     public function colocation()
     {
         return $this->belongsTo(Colocation::class);

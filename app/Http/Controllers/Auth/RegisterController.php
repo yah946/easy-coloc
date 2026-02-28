@@ -27,8 +27,7 @@ class RegisterController extends Controller
                     'name'=>$request->name,
                     'email'=>$request->email,
                     'password'=>$request->password,
-                ])
-                ->assignRole('admin');
+                ])->assignRole('admin');
             }
         });
         return redirect()->intended('/profile')->with('success','Your account has been successfully created!');

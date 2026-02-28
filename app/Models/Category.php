@@ -15,5 +15,5 @@ class Category extends Model
     public function expenses(){
         return $this->hasMany(Expense::class);
     }
-    protected $fillable = ['name','colocation_id','description'];
+    protected $fillable = ['name','colocation_id'];
 }

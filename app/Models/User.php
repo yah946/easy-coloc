@@ -23,8 +23,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'is_banned',
-        'is_active',
     ];
 
     public function colocations(){
