@@ -15,20 +15,15 @@ class RegisterController extends Controller
     }
     public function register(RegisterRequest $request) {
         DB::transaction(function()use($request){
-            $user=User::find(1);
-            if($user){
-                User::create([
+            $user=User::create([
                     'name'=>$request->name,
                     'email'=>$request->email,
                     'password'=>$request->password,
                 ]);
-            }else{
-                User::create([
-                    'name'=>$request->name,
-                    'email'=>$request->email,
-                    'password'=>$request->password,
-                ])->assignRole('admin');
+            if($user->id==1){
+                $user->assignRole('admin');
             }
+            Auth::login($user);
         });
         return redirect()->intended('/profile')->with('success','Your account has been successfully created!');
     }
