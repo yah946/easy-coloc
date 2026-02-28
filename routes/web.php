@@ -29,10 +29,15 @@ Route::middleware(['auth'])->group(function(){
     Route::get('colocations', [ColocationController::class,'index'])->name('coloc.index');
     Route::get('colocation/{colocation}', [ColocationController::class,'show'])->name('coloc.show');
     
-    Route::get('wallet', [PaymentController::class,'index'])->name('coloc.wallet');
-
     Route::post('invitation', [InvitationController::class,'store'])->name('invitation');
-    Route::get('invitation/{token}', [InvitationController::class,'index'])->name('invitation');
+    Route::get('invitation', [InvitationController::class,'decline'])->name('invitation.decline');
+    
+    Route::get('wallet', [PaymentController::class,'index'])->name('coloc.wallet');
+    
+});
+Route::middleware(['invite'])->group(function(){
+        Route::get('invitation/{token}', [InvitationController::class,'index'])->name('invitation');
+        Route::post('invitation/{token}', [InvitationController::class,'accept'])->name('invitation.accept');
 });
 Route::middleware(['admin'])->group(function(){
     Route::get('users', [UserController::class,'index'])->name('admin.users');

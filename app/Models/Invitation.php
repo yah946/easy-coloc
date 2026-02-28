@@ -9,7 +9,14 @@ class Invitation extends Model
 {
     /** @use HasFactory<\Database\Factories\InvitationFactory> */
     use HasFactory;
-    public function colocation(){
+    protected $fillable = [
+        'email',
+        'token',
+        'status',
+        'colocation_id',
+    ];
+    public function colocation()
+    {
         return $this->belongsTo(Colocation::class);
     }
 }

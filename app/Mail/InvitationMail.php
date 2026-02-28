@@ -18,7 +18,7 @@ class InvitationMail extends Mailable
      */
     public function __construct($token)
     {
-        $this->invitationUrl = route('invitation',$token);
+        $this->invitationUrl = route('invitation').'/'.$token;
     }
 
     /**

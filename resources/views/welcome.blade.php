@@ -67,9 +67,9 @@
             <p class="text-xl md:text-2xl font-light">
                 living together, simply
             </p>
-            <button class="mt-6 px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl shadow-lg hover:bg-gray-200 transition cursor-pointer">
+            <a href="/register" class="mt-6 px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl shadow-lg hover:bg-gray-200 transition">
                 Discover
-            </button>
+            </a>
             </div>
         </main>
         <section class="flex-grow py-8 px-6 text-center">

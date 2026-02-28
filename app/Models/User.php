@@ -12,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasRoles,SoftDeletes;
+    use HasFactory, Notifiable, HasRoles, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -25,8 +25,9 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function colocations(){
-        return $this->belongsToMany(Colocation::class,'user_colocation','user_id','colocation_id')->withPivot('role','left_at')->withTimestamps();
+    public function colocations()
+    {
+        return $this->belongsToMany(Colocation::class, 'user_colocation', 'user_id', 'colocation_id')->withPivot('role', 'left_at')->withTimestamps();
     }
     public function paidExpenses()
     {
@@ -39,6 +40,10 @@ class User extends Authenticatable
     public function paymentsReceived()
     {
         return $this->hasMany(Payment::class, 'to_user_id');
+    }
+    public function activeColocation()
+    {
+        return $this->colocations()->where('status', 'active')->wherePivotNull('left_at')->first();
     }
 
     /**

@@ -10,7 +10,7 @@
                     <p class="text-[#FFFF00]">{{ $colocation->pivot->role }}</p>
                 </div>
                 @endif
-                <p class="flex items-center bg-gray-200 text-black px-1 rounded fixed right-4">{{$colocation->status}}</p>
+                <p class="flex items-center bg-gray-200 text-black px-1 rounded absolute right-0">{{$colocation->status}}</p>
             </div>
             <div class="flex flex-col gap-8">
                 <div>

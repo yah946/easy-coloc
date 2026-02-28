@@ -14,10 +14,29 @@ class InvitationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($token)
     {
-        $invitation = 'kkk';
-        return view('invitation.invitation',compact('invitation'));
+        $invitation = Invitation::where('token', $token)->firstOrFail();
+        return view('invitation.invitation',[
+        'token' => $token,
+        'invitation' => $invitation
+    ]);
+    }
+    public function accept($token)
+    {
+        $invitation = Invitation::where('token',$token)->first();
+        if(auth()->user()->email!==$invitation->email) abort(403);
+        $invitation->colocation->users()->syncWithoutDetaching([
+            auth()->id() => [
+                'role' => 'member'
+            ]
+        ]);
+        $invitation->update(['status' => 'accepted']);
+        return redirect()->route('auth.profile')->with('success','You joined the colocation.    ');
+    }
+    public function decline()
+    {
+        return view('auth.profile')->with('success','the invitatiom was declined');
     }
 
     /**
@@ -34,8 +53,14 @@ class InvitationController extends Controller
     public function store(SentInvitationRequest $request)
     {
         $token = Str::random(60);
+        Invitation::create([
+            'email' => $request->email,
+            'token' => $token,
+            'status' => 'pending',
+            'colocation_id' => auth()->user()->colocations()->where('status', 'active')->first()->id,
+        ]);
         Mail::to($request->email)->send(new InvitationMail($token));
-        return back()->with('success','invatation sent. code: '.$token);
+        return back()->with('success', 'invatation sent. code: ' . $token);
     }
 
     /**

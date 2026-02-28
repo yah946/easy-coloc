@@ -17,17 +17,21 @@
             <div class="tilt-card-content p-6 flex flex-col h-full justify-between relative z-10">
                 <div>
                     <h2 class="text-3xl font-bold text-white mb-2">Invitation</h2>
-                    <p class="text-gray-200">You are invited to join {{ $invitation }}</p>
+                    <p class="text-gray-200">You are invited to join {{ $invitation->colocation->name }}</p>
                 </div>
                 <div class="space-y-4">
-                    <button
-                        class="w-full cursor-pointer py-2 bg-white text-purple-700 rounded-lg font-semibold transform transition hover:scale-105 active:scale-95">
-                        Accept
-                    </button>
-                    <button
-                        class="w-full cursor-pointer py-2 bg-white text-red-600 rounded-lg font-semibold transform transition hover:scale-105 active:scale-95">
+                    <form action="{{route('invitation.accept',$token)}}" method="post">
+                        @csrf
+                        <button
+                            class="w-full cursor-pointer py-2 bg-white text-purple-700 rounded-lg font-semibold transform transition hover:scale-105 active:scale-95">
+                            Accept
+                        </button>
+                    </form>
+                    <a
+                        href="{{route('invitation.decline')}}"
+                        class="w-full block text-center py-2 bg-white text-red-600 rounded-lg font-semibold transform transition hover:scale-105 active:scale-95">
                         Decline
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

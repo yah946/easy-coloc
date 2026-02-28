@@ -29,7 +29,7 @@
     <main>
         @if (session('success'))
             <div class="p-2">
-                <div class="p-4 mb-4 text-sm rounded bg-green-200 text-gray-900" role="alert">
+                <div class="p-4 mb-4 text-sm rounded bg-green-200 text-gray-900 wrap-break-word md:text-nowrap" role="alert">
                     <span class="font-bold">Success:</span> {{ session('success') }}
                 </div>
             </div>
