@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Colocation;
+use App\Models\Expense;
 use App\Models\User;
 use Illuminate\Http\Request;
 

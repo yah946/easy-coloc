@@ -16,7 +16,10 @@ class ExpenseController extends Controller
     public function index()
     {
         $colocation = auth()->user()->activeColocation();
-        $expenses = $colocation?->expenses()->with(['payer','users'])->latest()->get();
+        if(!$colocation) {
+            return back()->with('error','you should join colocation');
+        }
+        $expenses = $colocation->expenses()->with('payer')->latest()->get();
         return view('expense.index',compact('colocation','expenses'));
     }
 
@@ -34,10 +37,10 @@ class ExpenseController extends Controller
     public function store(ExpenseRequest $request)
     {
         $colocation = auth()->user()->activeColocation();
-        $members = $colocation->users()->wherePivotNull('left_at')->where('users.id','!=',auth()->id())->get();
         if(!$colocation) {
             return back()->with('error','you should join colocation');
         }
+        $members = $colocation->users()->wherePivotNull('left_at')->where('users.id','!=',auth()->id())->get();
         if($members->count()==0){
             Expense::create([
                 'title'=>$request->title,
@@ -56,7 +59,7 @@ class ExpenseController extends Controller
                 'user_id'=>auth()->id(),
                 'colocation_id'=>$colocation->id,
             ]);
-            $share = $request->amount/($members->count());
+            $share = $request->amount/($members->count()+1);
             foreach ($members as $member) {
                 $expense->users()->attach($member->id,['amount'=>$share]);
             }
@@ -71,12 +74,13 @@ class ExpenseController extends Controller
     {
         $colocation = auth()->user()->activeColocation();
         $expenses = $colocation?->expenses()->with(['payer','users'])->latest()->get();
-
+        if(!$colocation || !$expenses) {
+            return redirect()->route('auth.profile')->with('error','you should join colocation');
+        }
         return view('wallet.wallet',compact('expenses'));
     }
     public function pay(Expense $expense,User $user)
     {
-        dd($user->id);
         if ($user->id!=auth()->id()) {
             abort(403);
         }

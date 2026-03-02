@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('invitation', [InvitationController::class,'decline'])->name('invitation.decline');
     
     Route::get('wallet', [ExpenseController::class,'wallet'])->name('coloc.wallet');
-    Route::post('wallet/pay/{expense}', [ExpenseController::class,'pay'])->name('expense.pay');
+    Route::post('wallet/pay/{expense}/{user}', [ExpenseController::class,'pay'])->name('expense.pay');
     
 });
 Route::middleware('invite')->group(function(){

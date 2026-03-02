@@ -71,7 +71,7 @@ class ColocationController extends Controller
     {
         $members = $colocation->users()->wherePivotNull('left_at')->count();
         if($members!=1) return back()->with('error','Owner can\'t cancell '.$colocation->name.' and '.$members.' exist');
-        $colocation->update(['status'=>'cancelled']);
+        $colocation->update(attributes: ['status'=>'cancelled']);
         $colocation->users()->updateExistingPivot(auth()->id(),['left_at'=>now()]);
         return redirect()->route('coloc.index')->with('success',$colocation->name.' cancelled');
     }

@@ -58,7 +58,7 @@
         </div>
         {{-- end utilisateur bannis --}}
         {{-- depenses impayee --}}
-        <div class="relative w-full md:w-72 flex gap-4 items-center my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-2">
+        {{-- <div class="relative w-full md:w-72 flex gap-4 items-center my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-2">
             <div class="border border-black border-2 w-10 h-10 rounded">
                 <svg class="svg-icon" viewBox="0 0 20 20" data--h-bstatus="0OBSERVED">
                     <path
@@ -70,7 +70,7 @@
                 <h5 class="text-slate-400">Unpaid Expenses</h5>
                 <h3 class="text-black text-3xl">{{ $users }}</h3>
             </div>
-        </div>
+        </div> --}}
         {{-- end depenses impayee --}}
     </div>
     <x-tab-bar></x-tab-bar>
