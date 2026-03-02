@@ -14,8 +14,7 @@ class CategoryModal extends Component
         ]);
         Category::create([
             'name'=>$this->name,
-            'colocation_id'=>1,
-            'description'=>'77777'
+            'colocation_id'=>auth()->user()->activeColocation()->id,
         ]);
         $this->dispatch('categoryCreated');
         $this->reset(); 

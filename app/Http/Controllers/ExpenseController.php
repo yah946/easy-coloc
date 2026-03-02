@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ExpenseRequest;
 use App\Models\Category;
 use App\Models\Expense;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +15,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        return view('expense.index');
+        $colocation = auth()->user()->activeColocation();
+        $expenses = $colocation?->expenses()->with(['payer','users'])->latest()->get();
+        return view('expense.index',compact('colocation','expenses'));
     }
 
     /**
@@ -30,22 +33,55 @@ class ExpenseController extends Controller
      */
     public function store(ExpenseRequest $request)
     {
-            Expense::Create([
+        $colocation = auth()->user()->activeColocation();
+        $members = $colocation->users()->wherePivotNull('left_at')->where('users.id','!=',auth()->id())->get();
+        if(!$colocation) {
+            return back()->with('error','you should join colocation');
+        }
+        if($members->count()==0){
+            Expense::create([
                 'title'=>$request->title,
                 'amount'=>$request->amount,
                 'category_id'=>$request->category_id,
                 'user_id'=>auth()->id(),
-                'colocation_id'=>auth()->user()->colocations()->where('status', 'active')->first()->id,
+                'colocation_id'=>$colocation->id,
             ]);
+            return redirect()->route('expense.index')->with('success',$request->title.' '.'has been added');
+        }
+        DB::transaction(function()use($request,$colocation,$members) {
+            $expense=Expense::create([
+                'title'=>$request->title,
+                'amount'=>$request->amount,
+                'category_id'=>$request->category_id,
+                'user_id'=>auth()->id(),
+                'colocation_id'=>$colocation->id,
+            ]);
+            $share = $request->amount/($members->count());
+            foreach ($members as $member) {
+                $expense->users()->attach($member->id,['amount'=>$share]);
+            }
+        });
         return redirect()->route('expense.index')->with('success',$request->title.' '.'has been added');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Expense $expense)
+    public function wallet()
     {
-        //
+        $colocation = auth()->user()->activeColocation();
+        $expenses = $colocation?->expenses()->with(['payer','users'])->latest()->get();
+
+        return view('wallet.wallet',compact('expenses'));
+    }
+    public function pay(Expense $expense,User $user)
+    {
+        dd($user->id);
+        if ($user->id!=auth()->id()) {
+            abort(403);
+        }
+        $expense->users()->updateExistingPivot(auth()->id(),['paid_at'=>now()]);
+        return back();
     }
 
     /**

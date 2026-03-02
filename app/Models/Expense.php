@@ -26,6 +26,10 @@ class Expense extends Model
     }
     public function payer()
     {
-        return $this->belongsTo(User::class, 'payer_id');
+        return $this->belongsTo(User::class,'user_id');
+    }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'payments', 'expense_id', 'user_id')->withPivot('amount', 'paid_at')->withTimestamps();
     }
 }

@@ -28,18 +28,21 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('colocations', [ColocationController::class,'index'])->name('coloc.index');
     Route::get('colocation/{colocation}', [ColocationController::class,'show'])->name('coloc.show');
+    Route::post('colocation/cancel/{colocation}', [ColocationController::class,'cancel'])->name('coloc.cancel');
+    Route::post('colocation/quit/{colocation}', [ColocationController::class,'quit'])->name('coloc.quit');
     
     Route::post('invitation', [InvitationController::class,'store'])->name('invitation');
     Route::get('invitation', [InvitationController::class,'decline'])->name('invitation.decline');
     
-    Route::get('wallet', [PaymentController::class,'index'])->name('coloc.wallet');
+    Route::get('wallet', [ExpenseController::class,'wallet'])->name('coloc.wallet');
+    Route::post('wallet/pay/{expense}', [ExpenseController::class,'pay'])->name('expense.pay');
     
 });
-Route::middleware(['invite'])->group(function(){
+Route::middleware('invite')->group(function(){
         Route::get('invitation/{token}', [InvitationController::class,'index'])->name('invitation');
         Route::post('invitation/{token}', [InvitationController::class,'accept'])->name('invitation.accept');
 });
-Route::middleware(['admin'])->group(function(){
+Route::middleware('admin')->group(function(){
     Route::get('users', [UserController::class,'index'])->name('admin.users');
     Route::delete('users/{user}', [UserController::class,'ban'])->name('admin.ban');
     Route::get('blocked', [UserController::class,'OnlyBannedUsers'])->name('admin.blocked');

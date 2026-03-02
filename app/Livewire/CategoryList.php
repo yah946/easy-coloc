@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Category;
+use App\Models\Colocation;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -10,10 +11,11 @@ class CategoryList extends Component
 {
     use WithPagination;
     public $names = [];
+    public Colocation $colocation;
     protected $listeners = ['categoryCreated'=>'$refresh'];
-    public function mount(){
-        $colocation = auth()->user()->colocations();
-        foreach(Category::all() as $category){
+    public function mount(Colocation $colocation){
+        $this->colocation=$colocation;
+        foreach($this->colocation->categories as $category){
             $this->names[$category->id] = $category->name; 
         }
     }
@@ -33,7 +35,7 @@ class CategoryList extends Component
     }
     public function render()
     {
-        $categories = Category::paginate(3);
+        $categories = $this->colocation->categories()->latest()->paginate(3);
         return view('livewire.category-list',compact('categories'));
     }
 }

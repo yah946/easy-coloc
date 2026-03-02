@@ -26,11 +26,7 @@ class InvitationController extends Controller
     {
         $invitation = Invitation::where('token',$token)->first();
         if(auth()->user()->email!==$invitation->email) abort(403);
-        $invitation->colocation->users()->syncWithoutDetaching([
-            auth()->id() => [
-                'role' => 'member'
-            ]
-        ]);
+        $invitation->colocation->users()->syncWithoutDetaching([auth()->id() => ['role' => 'member']]);
         $invitation->update(['status' => 'accepted']);
         return redirect()->route('auth.profile')->with('success','You joined the colocation.    ');
     }
@@ -53,6 +49,7 @@ class InvitationController extends Controller
     public function store(SentInvitationRequest $request)
     {
         $token = Str::random(60);
+        // if(auth()->user()->colocations()->status!=='active') return back()->with('error','this colocation isn\'t active');
         Invitation::create([
             'email' => $request->email,
             'token' => $token,

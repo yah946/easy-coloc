@@ -11,7 +11,7 @@
 
 <body class="bg-gray-900 text-gray-300 min-h-screen p-2 pb-12 md:ml-16 mb-10">
     {{-- Cards --}}
-    <div class="flex justify-around">
+    <div class="md:flex justify-around gap-4">
         {{-- total utilisateur --}}
         <div class="relative w-full md:w-72 flex gap-4 items-center my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-2">
             <div class="border border-black border-2 w-10 h-10 rounded">
@@ -38,7 +38,7 @@
             </div>
             <div>
                 <h5 class="text-slate-400">Active Colocations</h5>
-                <h3 class="text-black text-3xl">{{ $users }}</h3>
+                <h3 class="text-black text-3xl">{{ $activeColocations }}</h3>
             </div>
         </div>
         {{-- end total colocations active --}}
@@ -53,7 +53,7 @@
             </div>
             <div>
                 <h5 class="text-slate-400">Banned Users</h5>
-                <h3 class="text-black text-3xl">{{ $users }}</h3>
+                <h3 class="text-black text-3xl">{{ $banned }}</h3>
             </div>
         </div>
         {{-- end utilisateur bannis --}}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Colocation;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,8 @@ class UserController extends Controller
     }
     public function statistic(User $user){
         $users = User::withTrashed()->count();
-        return view('admin.statistic',compact('users'));
+        $banned = User::onlyTrashed()->count();
+        $activeColocations = Colocation::where('status','active')->get()->count();
+        return view('admin.statistic',compact('users','banned','activeColocations'));
     }
 }

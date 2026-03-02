@@ -13,8 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->alias(['admin'=> AdminMiddleware::class]);
-        $middleware->alias(['invite'=> AcceptInvitationMiddleware::class]);
+        $middleware->alias([
+            'admin'=> AdminMiddleware::class,
+            'invite'=> AcceptInvitationMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -5,7 +5,7 @@
                 <div class="flex flex-col">
                     <span class="text-white text-lg font-medium md:hidden">{{ Str::limit($expense->title,20) }}</span>
                     <span class="text-white text-lg font-medium hidden md:flex">{{ $expense->title }}</span>
-                    <span class="text-gray-300 text-md font-medium">{{ auth()->user()->name }}</span>
+                    <span class="text-gray-300 text-md font-medium">{{ $expense->payer->name }}</span>
                     <span class="text-green-400 text-sm">{{ $expense->amount }} Dh</span>
                 </div>
                 <div class="flex items-center gap-4">

@@ -36,8 +36,9 @@ class ColocationController extends Controller
      */
     public function show(Colocation $colocation)
     {
-        $categories = Category::all();
-        return view('colocation.show',compact('colocation','categories'));
+        $categories = Category::where('colocation_id',$colocation->id);
+        $members = $colocation->users()->wherePivotNull('left_at')->count();
+        return view('colocation.show',compact('colocation','categories','members'));
     }
 
     /**
@@ -62,5 +63,24 @@ class ColocationController extends Controller
     public function destroy(Colocation $colocation)
     {
         //
+    }
+        /**
+     * Cancel the specified resource from storage.
+     */
+    public function cancel(Colocation $colocation)
+    {
+        $members = $colocation->users()->wherePivotNull('left_at')->count();
+        if($members!=1) return back()->with('error','Owner can\'t cancell '.$colocation->name.' and '.$members.' exist');
+        $colocation->update(['status'=>'cancelled']);
+        $colocation->users()->updateExistingPivot(auth()->id(),['left_at'=>now()]);
+        return redirect()->route('coloc.index')->with('success',$colocation->name.' cancelled');
+    }
+            /**
+     * Quit the specified resource from storage.
+     */
+    public function quit(Colocation $colocation)
+    {
+        $colocation->updateExistingPivot(auth()->id(),['left_at'=>now()]);
+        return redirect()->route('coloc.index')->with('success','you are outside'.$colocation->name.' now');
     }
 }

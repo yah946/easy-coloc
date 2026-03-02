@@ -29,7 +29,7 @@
                 <nav class="flex items-center justify-end gap-4">
                     @auth
                         <a
-                            href="{{ url('/dashboard') }}"
+                            href="{{ url('/colocations') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
                         >
                             Dashboard
@@ -55,8 +55,8 @@
         </header>
         <main class="relative w-full">
             <img 
-            src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"
-            alt="Shared apartment"
+            src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688"
+            alt="Modern shared apartment"
             class="w-full h-[500px] object-cover opacity-60"
             >
             

@@ -17,7 +17,11 @@
                     <h2 class="m-0 font-bold text-xl">{{$colocation->name}}</h2>
                 </div>
                 <div id="arrow" class="text-white flex justify-between text-center">
-                    <span>2 member</span>
+                    @if ($colocation->status==='active')
+                    <span>{{$members}} member</span>
+                    @else
+                    <span>0 member</span>
+                    @endif
                     <a href="{{route('coloc.show',$colocation)}}" class="bg-gray-200 text-black w-8 h-8 rounded-full text-2xl">&#8594;</a>
                 </div>
             </div>
